@@ -1,1 +1,2 @@
-g++ -o flcc.exe flcc.cpp
+default :
+	g++ -o flcc.exe flcc.cpp
