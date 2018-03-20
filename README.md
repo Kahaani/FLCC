@@ -32,3 +32,13 @@ Fan-chieh Lower Character Connector / 反切下字系聯工具
 ### 並查集
 
 並查集支持查找一個元素所屬的集合以及兩個元素各自所屬的集合的合併等運算。當給出兩個元素的一個無序對 ![](http://latex.codecogs.com/gif.latex?(a,b)) 時，需要快速「合併」 ![](http://latex.codecogs.com/gif.latex?a) 和 ![](http://latex.codecogs.com/gif.latex?b) 分別所在的集合，這期間需要反復「查找」某元素所在的集合。「並」、「查」和「集」3 個字由此而來。在這種數據類型中，![](http://latex.codecogs.com/gif.latex?n) 個不同的元素被分爲若干組。每組是一個集合，這種集合叫分離集合，稱之爲並查集（disjoint-set）。
+
+## 使用方法
+
+（以下内容尚待完善）
+
+将 `input.txt` 置于当前目录下。
+
+## 致谢
+
+`input.txt` 提取自 [poem](https://www.zhihu.com/people/poem) 的[广韵字音表(20170209)](https://zhuanlan.zhihu.com/p/20430939)。
