@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <cstdio>
-#include <windows.h>
 #include <string>
 
 #include <utility>
@@ -373,11 +372,9 @@ void connectRhyme(FILE *finp, FILE *foutp, const char *rhyme)
 
 int main()
 {
-    SYSTEMTIME sysTime;
-    GetLocalTime(&sysTime);
-
-    system("chcp 65001");  // Change the code page to UTF-8 to prevent mojibake
-    system("cls");
+    time_t timer;
+    time(&timer);
+    struct tm *sysTime = localtime(&timer);
 
     FILE *finp;
     fileopen(finp, "input.txt", "r");
@@ -385,16 +382,16 @@ int main()
     FILE *foutp;
     char outFileName[32];
     sprintf(outFileName, "output_%4d%02d%02d%02d%02d%02d.txt",
-        sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+        sysTime->tm_year+1900, sysTime->tm_mon+1, sysTime->tm_mday, sysTime->tm_hour, sysTime->tm_min, sysTime->tm_sec);
     fileopen(foutp, outFileName, "w");
 
     printf(u8"反切下字系聯程序 " VERSION " 系聯報告\n");
     fprintf(foutp, u8"反切下字系聯程序 " VERSION " 系聯報告\n");
 
     printf(u8"系聯時間 %4d/%02d/%02d %02d:%02d:%02d\n",
-        sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+        sysTime->tm_year+1900, sysTime->tm_mon+1, sysTime->tm_mday, sysTime->tm_hour, sysTime->tm_min, sysTime->tm_sec);
     fprintf(foutp, u8"系聯時間 %4d/%02d/%02d %02d:%02d:%02d\n",
-        sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+        sysTime->tm_year+1900, sysTime->tm_mon+1, sysTime->tm_mday, sysTime->tm_hour, sysTime->tm_min, sysTime->tm_sec);
 
     std::vector <char *> rhymeList = rhymeCount(finp);  // Count the number of rhymes
 
@@ -405,6 +402,5 @@ int main()
     fclose(foutp);
 
     printf(u8"系聯成功，請在 output.txt 中查看結果。\n");
-    system("PAUSE");
     return 0;
 }
